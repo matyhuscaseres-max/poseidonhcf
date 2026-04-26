@@ -183,7 +183,7 @@
       ],
       "commandTemplate": "ranks setrank {nick} Triton",
       "image": {
-        "src": "/assets/logos/poseidon.png",
+        "src": "/assets/logos/neptuno.png",
         "from": "#4cb0ff",
         "to": "#f4c96b",
         "accent": "rgba(244,201,107,.28)"
