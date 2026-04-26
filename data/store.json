@@ -84,7 +84,7 @@
       "description": "El rango más alto de la tienda con reclaim top, kit final y todos los perks pagados.",
       "features": [
         "Incluye todo Poseidon",
-        "Reclaim venity+",
+        "Reclaim poseidon+",
         "Prefix KING y KillTag KING"
       ],
       "commandTemplate": "ranks setrank {nick} Poseidon+",
@@ -107,7 +107,7 @@
         "sections": [
           {
             "title": "Beneficios",
-            "text": "Hereda Triton y Poseidon completos. Además activa el reclaim poseidonplus y el kit más alto configurado en RankSystem."
+            "text": "Hereda Triton y Poseidon completos. Además activa el reclaim poseidonplus y el kit más alto."
           },
           {
             "title": "Permisos destacados",
@@ -131,7 +131,7 @@
       "description": "Rango alto con reclaim fuerte, perks HCF y regalos cosméticos exclusivos.",
       "features": [
         "Incluye todo Triton",
-        "Reclaim venity",
+        "Reclaim poseidon",
         "Demon Wings + 1 Prefix + 1 KillTag"
       ],
       "commandTemplate": "ranks setrank {nick} Poseidon",
@@ -158,11 +158,11 @@
           },
           {
             "title": "Permisos destacados",
-            "text": "Incluye cosmetic.demon, killtag.king, prefix.king y el kit/reclaim poseidon configurado dentro de tu RankSystem."
+            "text": "Incluye cosmetic.demon, killtag.king, prefix.king y el kit/reclaim poseidon"
           },
           {
             "title": "Importante",
-            "text": "Compra permanente. Se entrega como rango Poseidon dentro del plugin de rangos."
+            "text": "Compra permanente. El nick del checkout debe ser exacto para que el rango se entregue bien."
           }
         ],
         "gallery": []
@@ -178,7 +178,7 @@
       "description": "Rango intermedio con buenos comandos PvP, reclaim propio y herencia completa de Zeus.",
       "features": [
         "Incluye todo Zeus",
-        "Reclaim vely",
+        "Reclaim triton",
         "Kit Triton"
       ],
       "commandTemplate": "ranks setrank {nick} Triton",
@@ -208,7 +208,7 @@
           },
           {
             "title": "Importante",
-            "text": "Compra permanente. Se entrega como rango Triton."
+            "text": "Compra permanente. El nick del checkout debe ser exacto para que el rango se entregue bien."
           }
         ],
         "gallery": []
@@ -224,8 +224,8 @@
       "description": "Rango base de paga para entrar al premium con comandos útiles y reclaim propio.",
       "features": [
         "Autofeed y near",
-        "Shadow kit",
-        "Shadow reclaim"
+        "Kit Zeus",
+        "reclaim zeus"
       ],
       "commandTemplate": "ranks setrank {nick} Zeus",
       "image": {
