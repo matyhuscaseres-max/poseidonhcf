@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Poseidon HCF Shop</title>
+    <meta name="description" content="Oficial Shop PoseidonHCF Minecraft Server" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;500;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div class="entry-overlay" id="entry-overlay">
+      <div class="entry-card glass">
+        <p class="eyebrow">Bienvenido</p>
+        <h2>Ingresa tu usuario para entrar</h2>
+        <p class="entry-copy">Tu nombre se usará en el checkout y en la experiencia de compra.</p>
+        <label class="label" for="player-name">Usuario</label>
+        <input id="player-name" class="input entry-input" maxlength="20" placeholder="Ej: maty" autocomplete="nickname" />
+        <button class="button primary" id="enter-store-btn">Entrar al store</button>
+        <p class="helper">Puedes cambiarlo luego desde el checkout.</p>
+      </div>
+    </div>
+
+    <div class="page-backdrop" aria-hidden="true"></div>
+    <div class="ambient ambient-a"></div>
+    <div class="ambient ambient-b"></div>
+
+    <header class="store-header glass">
+      <div class="header-brand">
+        <div class="logo-pulse-wrap" id="logo-wrap">
+          <img src="/assets/logos/logo.png" alt="Poseidon HCF" id="store-logo" class="logo-img" />
+        </div>
+        <div class="brand-copy">
+          <h1 id="server-name">Poseidon HCF</h1>
+          <p class="tagline eyebrow" id="server-tagline">Oceanic Commerce for Bedrock HCF</p>
+        </div>
+      </div>
+
+      <div class="header-meta">
+        <div class="server-chip" aria-label="Información del servidor">
+          <button class="copy-ip-btn" id="copy-ip-btn" type="button" aria-label="Copiar IP">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M9 9h8v10H9z" fill="none" stroke="currentColor" stroke-width="1.8" />
+              <path d="M7 15H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1" fill="none" stroke="currentColor" stroke-width="1.8" />
+            </svg>
+          </button>
+          <span class="server-ip-text" id="server-ip-text">play.poseidonhcf.xyz</span>
+          <a class="discord-icon-link" id="discord-link" href="https://dsc.gg/poseidonhcf" target="_blank" rel="noreferrer" aria-label="Discord">
+            <img src="https://cdn.iconscout.com/icon/free/png-256/free-discordia-icon-svg-download-png-9089972.png?f=webp&w=128" alt="Discord" />
+          </a>
+        </div>
+
+        <button class="pill pill-sm sound-toggle" id="sound-toggle" type="button" aria-pressed="true">🔊 Sonido</button>
+        <nav class="header-links" id="header-links" aria-label="Enlaces rápidos"></nav>
+      </div>
+    </header>
+
+    <div class="store-body">
+      <nav class="cat-sidebar glass" id="cat-sidebar">
+        <p class="sidebar-label">CATEGORÍAS</p>
+        <div id="category-list"></div>
+      </nav>
+
+      <main class="store-main">
+        <div class="products-layout">
+          <section class="products-area">
+            <div class="area-title">
+              <p class="eyebrow" id="active-cat-eyebrow">Storefront</p>
+              <h2 id="active-cat-name">Productos</h2>
+            </div>
+            <div class="product-grid" id="catalog"></div>
+          </section>
+
+          <aside class="checkout-col">
+            <section class="glass panel checkout-panel">
+              <div class="panel-head">
+                <p class="eyebrow">Checkout</p>
+                <h3>Compra segura</h3>
+              </div>
+              <label class="label" for="minecraft-nick">Nick de Minecraft Bedrock</label>
+              <input id="minecraft-nick" class="input" maxlength="16" placeholder="Ej: PoseidonPlayer" />
+              <label class="label" for="product-select">Producto</label>
+              <select id="product-select" class="input"></select>
+              <label class="label" for="payment-method">Método de pago</label>
+              <select id="payment-method" class="input">
+                <option value="paypal">PayPal</option>
+                <option value="gift_card">Tarjeta de regalo</option>
+              </select>
+              <div class="gift-card-panel hidden" id="custom-amount-panel">
+                <label class="label" for="custom-amount-input">Monto a donar</label>
+                <input id="custom-amount-input" class="input" type="number" min="1" step="0.01" placeholder="Ej: 5.00" />
+              </div>
+              <div class="checkout-summary glass">
+                <p id="checkout-name">Selecciona un producto</p>
+                <strong id="checkout-price">$0.00 USD</strong>
+                <small id="checkout-description">Tu compra se reflejará una vez el pago sea completado.</small>
+                <small id="checkout-user">Usuario: —</small>
+              </div>
+              <div class="payment-status" id="payment-status">Pagos en vivo</div>
+              <div class="discount-banner hidden" id="discount-banner"></div>
+              <div class="gift-card-panel hidden" id="gift-card-panel">
+                <label class="label" for="gift-card-code">Código de la tarjeta</label>
+                <input id="gift-card-code" class="input" placeholder="Ej: GIFT-AB12-CD34" autocomplete="off" />
+                <button class="button primary" id="gift-card-pay-btn" type="button">Canjear tarjeta</button>
+              </div>
+              <div id="paypal-button-container"></div>
+              <p class="helper" id="checkout-feedback">Ingresa tu nick y elige el producto para continuar.</p>
+            </section>
+
+            <section class="glass panel">
+              <div class="panel-head">
+                <p class="eyebrow">Regalos</p>
+                <h3>Canjear código</h3>
+              </div>
+              <label class="label" for="reward-code-input">Código de regalo</label>
+              <input id="reward-code-input" class="input" placeholder="Ej: REWARD-POSEIDON" autocomplete="off" />
+              <button class="button primary" id="reward-code-redeem-btn" type="button">Canjear código</button>
+              <p class="helper">Si el premio es un unstrike, escribe el nombre de la facción en el campo del nick.</p>
+            </section>
+
+            <section class="glass panel">
+              <div class="panel-head">
+                <p class="eyebrow">Compradores</p>
+                <h3>Últimas compras</h3>
+              </div>
+              <div class="buyers-list" id="buyers-list"></div>
+            </section>
+
+            <section class="glass panel">
+              <div class="hero-metrics">
+                <article class="metric">
+                  <span id="metric-products">0</span>
+                  <small>productos</small>
+                </article>
+                <article class="metric">
+                  <span id="metric-buyers">0</span>
+                  <small>compradores</small>
+                </article>
+                <article class="metric">
+                  <span>24/7</span>
+                  <small>online</small>
+                </article>
+              </div>
+            </section>
+          </aside>
+        </div>
+
+        <section class="glass admin-shell" id="admin-shell" style="display:none">
+          <div class="admin-login" id="admin-login">
+            <div class="panel-head"><p class="eyebrow">Acceso</p><h3>Administrador</h3></div>
+            <input id="admin-user" class="input" placeholder="Usuario" />
+            <input id="admin-pass" class="input" type="password" placeholder="Contraseña" />
+            <button class="button primary" id="admin-login-btn">Entrar</button>
+            <p class="helper" id="admin-login-feedback">Usa las credenciales del panel para gestionar la tienda.</p>
+          </div>
+
+          <div class="admin-dashboard hidden" id="admin-dashboard">
+            <div class="admin-toolbar">
+              <div><p class="eyebrow">Dashboard</p><h3>Gestión interna</h3></div>
+              <button class="button ghost" id="admin-logout-btn">Cerrar sesión</button>
+            </div>
+
+            <div class="stats-grid" id="stats-grid"></div>
+
+            <div class="admin-grid">
+              <section class="glass panel admin-card">
+                <div class="panel-head"><p class="eyebrow">Servidor</p><h3>Datos rápidos</h3></div>
+                <div class="form-grid">
+                  <input id="admin-server-name" class="input" placeholder="Nombre del servidor" />
+                  <input id="admin-server-tagline" class="input" placeholder="Tagline" />
+                  <input id="admin-server-ip" class="input" placeholder="IP del servidor" />
+                  <input id="admin-server-discord" class="input" placeholder="Discord" />
+                </div>
+                <label class="label">Enlaces rápidos</label>
+                <div id="admin-link-list" class="editor-list"></div>
+                <button class="pill pill-sm" id="add-link-btn" type="button">+ Agregar link</button>
+              </section>
+
+              <section class="glass panel admin-card">
+                <div class="panel-head"><p class="eyebrow">Colores</p><h3>Apariencia</h3></div>
+                <div class="theme-grid">
+                  <label><span>Primario</span><input id="admin-theme-primary" type="color" class="color-input" /></label>
+                  <label><span>Secundario</span><input id="admin-theme-secondary" type="color" class="color-input" /></label>
+                  <label><span>Acuerdo</span><input id="admin-theme-accent" type="color" class="color-input" /></label>
+                  <label><span>Fondo</span><input id="admin-theme-bg" type="color" class="color-input" /></label>
+                  <label><span>Panel</span><input id="admin-theme-panel" type="color" class="color-input" /></label>
+                  <label><span>Discord</span><input id="admin-discord-color" type="color" class="color-input" /></label>
+                </div>
+                <div class="form-grid single-row">
+                  <input id="admin-logo-size" class="input" type="number" min="64" max="220" step="2" placeholder="Tamaño del logo" />
+                  <label class="toggle-row"><input id="admin-logo-pulse" type="checkbox" /> <span>Activar pulso del logo</span></label>
+                </div>
+              </section>
+            </div>
+
+            <div class="admin-grid">
+              <section class="glass panel admin-card">
+                <div class="panel-head"><p class="eyebrow">Textos</p><h3>Hero principal</h3></div>
+                <label class="label" for="admin-hero-title">Título</label>
+                <input id="admin-hero-title" class="input" placeholder="Título principal" />
+                <label class="label" for="admin-hero-subtitle">Subtítulo</label>
+                <textarea id="admin-hero-subtitle" class="textarea" spellcheck="false"></textarea>
+              </section>
+
+              <section class="glass panel admin-card">
+                <div class="panel-head"><p class="eyebrow">Políticas</p><h3>Textos editables</h3></div>
+                <label class="label" for="admin-terms-text">Términos</label>
+                <textarea id="admin-terms-text" class="textarea tiny" spellcheck="false"></textarea>
+                <label class="label" for="admin-privacy-text">Privacidad</label>
+                <textarea id="admin-privacy-text" class="textarea tiny" spellcheck="false"></textarea>
+                <label class="label" for="admin-refunds-text">Reembolsos</label>
+                <textarea id="admin-refunds-text" class="textarea tiny" spellcheck="false"></textarea>
+              </section>
+            </div>
+
+            <section class="glass panel admin-card">
+              <div class="admin-toolbar compact">
+                <div><p class="eyebrow">Productos</p><h3>Editar catálogo</h3></div>
+                <button class="pill pill-sm accent" id="add-product-btn" type="button">+ Agregar producto</button>
+              </div>
+              <div id="product-editor" class="product-editor"></div>
+              <button class="button primary" id="save-store-btn">Guardar cambios</button>
+              <p class="helper" id="admin-save-feedback">Puedes editar precios, gifs, links, colores y textos sin tocar JSON.</p>
+            </section>
+
+            <section class="glass panel admin-card">
+              <div class="admin-toolbar compact">
+                <div><p class="eyebrow">Gift Cards</p><h3>Tarjetas de regalo</h3></div>
+                <button class="pill pill-sm accent" id="add-gift-card-btn" type="button">+ Crear tarjeta</button>
+              </div>
+              <div id="gift-card-editor" class="product-editor gift-card-editor"></div>
+            </section>
+
+            <section class="glass panel admin-card">
+              <div class="admin-toolbar compact">
+                <div><p class="eyebrow">Reward Codes</p><h3>Códigos de regalo</h3></div>
+                <button class="pill pill-sm accent" id="add-reward-code-btn" type="button">+ Crear código</button>
+              </div>
+              <div id="reward-code-editor" class="product-editor reward-code-editor"></div>
+            </section>
+
+            <section class="glass panel admin-card">
+              <div class="admin-toolbar compact">
+                <div><p class="eyebrow">Descuentos</p><h3>Promociones activas</h3></div>
+                <button class="pill pill-sm accent" id="add-discount-btn" type="button">+ Nuevo descuento</button>
+              </div>
+              <div id="discount-editor" class="product-editor discount-editor"></div>
+            </section>
+
+            <section class="glass panel admin-card">
+              <div class="admin-toolbar compact">
+                <div><p class="eyebrow">Categorías</p><h3>Editor rápido</h3></div>
+                <button class="pill pill-sm accent" id="add-category-btn" type="button">+ Nueva categoría</button>
+              </div>
+              <div id="category-editor" class="product-editor category-editor"></div>
+            </section>
+
+            <section class="glass panel admin-card">
+              <div class="panel-head"><p class="eyebrow">Sales Log</p><h3>Ventas recientes</h3></div>
+              <div class="table-wrap">
+                <table>
+                  <thead><tr><th>Nick</th><th>Producto</th><th>Pago</th><th>Estado</th><th>Fecha</th></tr></thead>
+                  <tbody id="sales-table-body"></tbody>
+                </table>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <section class="legal-grid">
+          <article class="glass legal-card">
+            <p class="eyebrow">Legal</p>
+            <h3 id="terms-card-title">Términos y condiciones</h3>
+            <p id="terms-card-text">Todas las compras son digitales, voluntarias y vinculadas al nick ingresado por el comprador.</p>
+            <a class="pill" href="/terms.html">Ver página completa</a>
+          </article>
+          <article class="glass legal-card">
+            <p class="eyebrow">Privacy</p>
+            <h3 id="privacy-card-title">Política de privacidad</h3>
+            <p id="privacy-card-text">Solo almacenamos la información necesaria para procesar pedidos y gestionar soporte.</p>
+            <a class="pill" href="/privacy.html">Ver página completa</a>
+          </article>
+          <article class="glass legal-card">
+            <p class="eyebrow">Refunds</p>
+            <h3 id="refunds-card-title">Política de reembolsos</h3>
+            <p id="refunds-card-text">Los reembolsos se revisan caso por caso para compras no entregadas o errores verificables.</p>
+            <a class="pill" href="/refunds.html">Ver página completa</a>
+          </article>
+        </section>
+
+        <button class="pill pill-sm admin-pill admin-secret-btn" id="login-btn" type="button">⚙ Admin</button>
+      </main>
+    </div>
+
+    <template id="product-card-template">
+      <article class="glass product-card">
+        <div class="product-cover">
+          <button class="product-info-btn" type="button" aria-label="Más información">!</button>
+          <span class="product-badge"></span>
+          <div class="product-art">
+            <div class="product-glow"></div>
+          </div>
+        </div>
+        <div class="product-content">
+          <div class="product-title-row">
+            <h4></h4>
+            <strong></strong>
+          </div>
+          <p class="product-description"></p>
+          <ul class="feature-list"></ul>
+          <button class="button secondary select-product-btn">Seleccionar</button>
+        </div>
+      </article>
+    </template>
+
+
+    <div class="reward-overlay hidden" id="reward-overlay" aria-hidden="true">
+      <div class="reward-backdrop" data-close-reward></div>
+      <section class="glass reward-card" role="dialog" aria-modal="true" aria-labelledby="reward-title">
+        <button class="reward-close" id="reward-close" type="button" aria-label="Cerrar">×</button>
+        <p class="eyebrow">Canje exitoso</p>
+        <h2 id="reward-title">¡Felicidades!</h2>
+        <div class="reward-image-wrap">
+          <img id="reward-image" alt="Premio" />
+        </div>
+        <p class="reward-message" id="reward-message"></p>
+        <p class="reward-meta" id="reward-meta"></p>
+        <button class="button primary" id="reward-ok" type="button">Continuar</button>
+      </section>
+    </div>
+
+    <div class="product-info-modal hidden" id="product-info-modal" aria-hidden="true">
+      <div class="product-info-backdrop" data-close-product-info></div>
+      <article class="glass product-info-panel" role="dialog" aria-modal="true" aria-labelledby="product-info-title">
+        <button class="product-info-close" id="product-info-close" type="button" aria-label="Cerrar">×</button>
+        <div class="product-info-hero">
+          <div class="product-info-icon-wrap"><div class="product-info-icon" id="product-info-icon"></div></div>
+          <div class="product-info-heading">
+            <p class="eyebrow" id="product-info-badge">Detalles</p>
+            <h2 id="product-info-title"></h2>
+            <p class="product-info-subtitle" id="product-info-subtitle"></p>
+            <div class="product-info-price" id="product-info-price"></div>
+          </div>
+        </div>
+        <div class="product-info-body">
+          <div class="product-info-block">
+            <h3>Información</h3>
+            <div id="product-info-description" class="product-info-copy"></div>
+          </div>
+          <div class="product-info-block">
+            <h3>Stickers</h3>
+            <div class="product-info-stickers" id="product-info-stickers"></div>
+          </div>
+          <div class="product-info-block">
+            <h3>Secciones</h3>
+            <div class="product-info-sections" id="product-info-sections"></div>
+          </div>
+          <div class="product-info-block">
+            <h3>Imágenes</h3>
+            <div class="product-info-gallery" id="product-info-gallery"></div>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <script src="/app.js" defer></script>
+  </body>
+</html>
